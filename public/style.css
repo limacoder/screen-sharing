@@ -1,0 +1,171 @@
+:root {
+  color-scheme: dark;
+  --bg: #0e1013;
+  --surface: #171a1f;
+  --surface-raised: #20242b;
+  --line: #2c323b;
+  --text: #e8eaed;
+  --muted: #9aa3ae;
+  --accent: #4f8cff;
+  --good: #3ecf8e;
+  --wait: #e6b450;
+  --bad: #ff6b6b;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.45 "Segoe UI", system-ui, sans-serif;
+}
+
+button, select, summary {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  padding: 8px 14px;
+}
+
+button:hover:not(:disabled), summary:hover { border-color: var(--muted); }
+button:disabled { cursor: default; opacity: .6; }
+:is(button, select, summary, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button.danger { background: var(--bad); border-color: var(--bad); color: #1a0d0d; }
+button[aria-pressed="true"] { border-color: var(--accent); color: #a9c7ff; }
+
+.home {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.home h1 { font-size: 48px; letter-spacing: -.02em; margin: 0; }
+.home p { color: var(--muted); margin: 0 0 12px; }
+.home button { font-size: 17px; padding: 12px 28px; }
+.home .warning { color: var(--wait); margin-top: 8px; }
+
+.room { display: flex; flex-direction: column; height: 100%; }
+
+.bar {
+  align-items: center;
+  background: var(--surface);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+header.bar { border-bottom: 1px solid var(--line); }
+footer.bar { border-top: 1px solid var(--line); }
+
+.brand { font-size: 17px; margin-right: 6px; }
+.push-right { margin-left: auto; }
+
+.status { align-items: center; color: var(--muted); display: inline-flex; gap: 8px; }
+.status::before { background: var(--dot, var(--wait)); border-radius: 50%; content: ""; height: 9px; width: 9px; }
+.status[data-tone="good"] { --dot: var(--good); }
+.status[data-tone="bad"] { --dot: var(--bad); color: var(--bad); }
+
+.stage {
+  align-items: center;
+  background: #000;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+#remote { height: 100%; object-fit: contain; width: 100%; }
+
+.placeholder { color: var(--muted); font-size: 18px; margin: 0; padding: 24px; text-align: center; }
+
+.unmute { position: absolute; }
+
+.audio-warning {
+  align-items: center;
+  background: var(--surface-raised);
+  border: 1px solid var(--wait);
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  left: 50%;
+  padding: 8px 12px;
+  position: absolute;
+  top: 14px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.preview {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  bottom: 14px;
+  position: absolute;
+  right: 14px;
+  width: min(22%, 320px);
+}
+
+.stats {
+  background: rgba(0, 0, 0, .72);
+  border-radius: 8px;
+  font: 13px/1.5 Consolas, "Cascadia Mono", monospace;
+  left: 14px;
+  margin: 0;
+  padding: 8px 12px;
+  position: absolute;
+  top: 14px;
+}
+
+.quality { position: relative; }
+.quality summary { list-style: none; user-select: none; }
+.quality summary::-webkit-details-marker { display: none; }
+.quality summary::after { content: " ▾"; color: var(--muted); }
+
+.quality-panel {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  bottom: calc(100% + 8px);
+  display: grid;
+  gap: 10px;
+  left: 0;
+  padding: 12px;
+  position: absolute;
+  width: 290px;
+  z-index: 2;
+}
+
+.quality-panel label { color: var(--muted); display: grid; font-size: 13px; gap: 4px; }
+.quality-panel select { background: var(--surface); padding: 6px 8px; width: 100%; }
+
+.volume { align-items: center; color: var(--muted); display: inline-flex; gap: 6px; }
+.volume input { accent-color: var(--accent); width: 90px; }
+
+.toast {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  bottom: 76px;
+  left: 50%;
+  max-width: 90%;
+  padding: 10px 16px;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 3;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "telao",
+  "version": "1.0.0",
+  "description": "Compartilhamento de tela P2P para duas pessoas, com áudio e até 4K60",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node online.js",
+    "local": "node server.js",
+    "test": "node --test --test-concurrency=1 \"test/*.test.js\""
+  },
+  "dependencies": {
+    "cloudflared": "^0.7.3",
+    "ws": "^8.22.1"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.1"
+  }
+}

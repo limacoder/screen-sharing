@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Telão</title>
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main id="home" class="home">
+    <h1>Telão</h1>
+    <p id="home-text">Sua tela com áudio, direto de um computador para o outro.</p>
+    <button id="enter" class="primary">Criar sala</button>
+    <p id="home-warning" class="warning" hidden></p>
+  </main>
+
+  <div id="room" class="room" hidden>
+    <header class="bar">
+      <strong class="brand">Telão</strong>
+      <span id="status" class="status" data-tone="wait">Conectando…</span>
+      <button id="copy-link" class="push-right">Copiar link da sala</button>
+    </header>
+
+    <section id="stage" class="stage">
+      <video id="remote" autoplay playsinline hidden></video>
+      <p id="placeholder" class="placeholder"></p>
+      <div id="audio-warning" class="audio-warning" role="status" hidden>
+        <span id="audio-warning-text"></span>
+        <button id="reshare" class="primary" hidden>Compartilhar de novo com áudio</button>
+      </div>
+      <button id="unmute" class="primary unmute" hidden>Clique para ouvir</button>
+      <video id="local" class="preview" autoplay playsinline muted hidden></video>
+      <pre id="stats" class="stats" hidden></pre>
+    </section>
+
+    <footer class="bar">
+      <button id="share" class="primary">Compartilhar tela</button>
+      <button id="mic" aria-pressed="false">Ligar microfone</button>
+
+      <details id="quality" class="quality">
+        <summary>Qualidade</summary>
+        <div class="quality-panel">
+          <label>Resolução
+            <select id="resolution">
+              <option value="auto" selected>Automática (tela de quem assiste)</option>
+              <option value="2160">4K</option>
+              <option value="1440">1440p</option>
+              <option value="1080">1080p</option>
+              <option value="720">720p</option>
+            </select>
+          </label>
+          <label>Quadros por segundo
+            <select id="fps">
+              <option value="60" selected>60</option>
+              <option value="30">30</option>
+            </select>
+          </label>
+          <label>Prioridade
+            <select id="hint">
+              <option value="motion" selected>Fluidez (jogos e vídeo)</option>
+              <option value="detail">Nitidez (texto e código)</option>
+            </select>
+          </label>
+          <label>Som enviado
+            <select id="shared-sound">
+              <option value="everything" selected>Todo o computador</option>
+              <option value="without-chrome">Sem o som do Chrome (evita eco da voz)</option>
+            </select>
+          </label>
+          <label>Codec
+            <select id="codec">
+              <option value="auto" selected>Automático (prefere hardware)</option>
+              <option value="AV1">AV1</option>
+              <option value="VP9">VP9</option>
+              <option value="H264">H.264</option>
+            </select>
+          </label>
+        </div>
+      </details>
+
+      <label class="volume">Tela <input id="volume" type="range" min="0" max="1" step="0.01" value="1"></label>
+      <label class="volume">Voz <input id="voice-volume" type="range" min="0" max="1" step="0.01" value="1"></label>
+
+      <button id="toggle-stats" class="push-right" aria-pressed="false">Estatísticas</button>
+      <button id="fullscreen">Tela cheia</button>
+    </footer>
+
+    <audio id="voice" autoplay></audio>
+    <div id="toast" class="toast" role="status" hidden></div>
+  </div>
+</body>
+</html>
